@@ -3,15 +3,20 @@ import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import Head from 'components/head';
 import Header from 'components/header';
-import GlobalStyle from 'global.css.js';
+import Footer from 'components/footer';
+import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from 'theme';
 
 const Layout = ({ data, children }) => (
-  <div>
-    <GlobalStyle />
-    <Head />
-    <Header title={data.site.siteMetadata.siteTitle} />
-    {children}
-  </div>
+  <ThemeProvider>
+    <FixedGlobalStyle />
+    <ThemedGlobalStyle />
+    <div>
+      <Head />
+      <Header title={data.site.siteMetadata.siteTitle} />
+      {children}
+      <Footer />
+    </div>
+  </ThemeProvider>
 );
 
 Layout.propTypes = {
